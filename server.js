@@ -1,4 +1,6 @@
 var { graphql, buildSchema } = require("graphql");
+const express = require("express");
+const { createHandler } = require("graphql-http/lib/use/express");
 
 var schema = buildSchema(`
   type Query {
@@ -17,10 +19,9 @@ var rootValue = {
   },
 };
 
-graphql({
-  schema,
-  source: "{ hello age ds}",
-  rootValue,
-}).then((response) => {
-  console.log(response);
-});
+const app = express();
+
+app.all("/graphql", createHandler({ schema, rootValue }));
+
+app.listen(4000);
+console.log("api running on 4000");
