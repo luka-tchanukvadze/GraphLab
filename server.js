@@ -19,7 +19,7 @@ var rootValue = {
 
 graphql({
   schema,
-  source: "{ hello age }",
+  source: "{ hello age ds}",
   rootValue,
 }).then((response) => {
   console.log(response);
