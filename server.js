@@ -1,6 +1,7 @@
 var { graphql, buildSchema } = require("graphql");
 const express = require("express");
 const { createHandler } = require("graphql-http/lib/use/express");
+const { ruruHTML } = require("ruru/server");
 
 var schema = buildSchema(`
   type Query {
@@ -22,6 +23,11 @@ var rootValue = {
 const app = express();
 
 app.all("/graphql", createHandler({ schema, rootValue }));
+
+app.get("/", (_req, res) => {
+  res.type("html");
+  res.end(ruruHTML({ endpoint: "/graphql" }));
+});
 
 app.listen(4000);
 console.log("api running on 4000");
