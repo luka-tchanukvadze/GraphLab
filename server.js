@@ -9,6 +9,7 @@ var schema = buildSchema(`
     age: Int
     weight: Float!
     isOver18: Boolean
+    hobbies: [String!]!
   }
 `);
 
@@ -23,6 +24,9 @@ var rootValue = {
 
   weight: 55,
   isOver18: true,
+  hobbies: () => {
+    return ["carting", "f1", "random "];
+  },
 };
 
 const app = express();
