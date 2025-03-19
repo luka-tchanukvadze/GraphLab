@@ -5,7 +5,9 @@ const { ruruHTML } = require("ruru/server");
 
 var schema = buildSchema(`
   type Query {
-    hello: String
+    hello(name: String): String
+
+
     age: Int
     weight: Float!
     isOver18: Boolean
@@ -14,8 +16,8 @@ var schema = buildSchema(`
 `);
 
 var rootValue = {
-  hello: () => {
-    return "Hello world!";
+  hello: (args) => {
+    return `hello ${args.name}`;
   },
 
   age: () => {
