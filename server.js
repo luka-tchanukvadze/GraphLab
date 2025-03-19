@@ -7,6 +7,8 @@ var schema = buildSchema(`
   type Query {
     hello: String
     age: Int
+    weight: Float!
+    isOver18: Boolean
   }
 `);
 
@@ -18,6 +20,9 @@ var rootValue = {
   age: () => {
     return 3;
   },
+
+  weight: 55,
+  isOver18: true,
 };
 
 const app = express();
