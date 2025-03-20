@@ -19,7 +19,12 @@ var schema = buildSchema(`
   type User {
     id: Int
     name: String
-}
+
+    posts: [Posts]
+    frineds: [User]
+    invitedBy: User
+  }
+    
 `);
 
 var rootValue = {
