@@ -1,31 +1,47 @@
-var { graphql, buildSchema } = require("graphql");
+var {
+  graphql,
+  buildSchema,
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLString,
+} = require("graphql");
 const express = require("express");
 const { createHandler } = require("graphql-http/lib/use/express");
 const { ruruHTML } = require("ruru/server");
 
-var schema = buildSchema(`
-  type Query {
-    hello(name: String!): String
+// var schema = buildSchema(`
+//   type Query {
+//     hello(name: String!): String
 
+//     age: Int
+//     weight: Float!
+//     isOver18: Boolean
+//     hobbies: [String!]!
 
-    age: Int
-    weight: Float!
-    isOver18: Boolean
-    hobbies: [String!]!
+//     user: User
+//   }
 
-    user: User
-  }
+//   type User {
+//     id: Int
+//     name: String
 
-  type User {
-    id: Int
-    name: String
+//   }
 
-    posts: [Posts]
-    frineds: [User]
-    invitedBy: User
-  }
-    
-`);
+// `);
+
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: "Query",
+    fields: {
+      hello: {
+        type: GraphQLString,
+        resolve: () => {
+          return "Hello world";
+        },
+      },
+    },
+  }),
+});
 
 var rootValue = {
   hello: ({ name }) => {
