@@ -12,7 +12,14 @@ var schema = buildSchema(`
     weight: Float!
     isOver18: Boolean
     hobbies: [String!]!
+
+    user: User
   }
+
+  type User {
+    id: Int
+    name: String
+}
 `);
 
 var rootValue = {
@@ -28,6 +35,13 @@ var rootValue = {
   isOver18: true,
   hobbies: () => {
     return ["carting", "f1", "random "];
+  },
+
+  user: () => {
+    return {
+      id: 1,
+      name: "Chanu",
+    };
   },
 };
 
