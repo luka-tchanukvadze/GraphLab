@@ -61,6 +61,9 @@ const User = new GraphQLObjectType({
     },
     name: {
       type: GraphQLString,
+      resolve: (obj) => {
+        return obj.name.trim();
+      },
     },
   },
 });
