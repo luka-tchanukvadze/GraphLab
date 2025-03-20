@@ -4,6 +4,7 @@ var {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
+  GraphQLInt,
 } = require("graphql");
 const express = require("express");
 const { createHandler } = require("graphql-http/lib/use/express");
@@ -52,6 +53,18 @@ const { ruruHTML } = require("ruru/server");
 //   },
 // };
 
+const User = new GraphQLObjectType({
+  name: "User",
+  fields: {
+    id: {
+      type: GraphQLInt,
+    },
+    name: {
+      type: GraphQLString,
+    },
+  },
+});
+
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Query",
@@ -60,6 +73,16 @@ const schema = new GraphQLSchema({
         type: GraphQLString,
         resolve: () => {
           return "Hello world";
+        },
+      },
+
+      user: {
+        type: User,
+        resolve: () => {
+          return {
+            id: 1,
+            name: "Chanu",
+          };
         },
       },
     },
