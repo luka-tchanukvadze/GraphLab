@@ -3,7 +3,6 @@ import { createSchema } from "graphql-yoga";
 const queries = /* GraphQL */ `
   type Query {
     hello: String
-    user: User
   }
 `;
 
