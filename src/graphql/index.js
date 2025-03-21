@@ -5,7 +5,9 @@ const queries = /* GraphQL */ `
     hello: String
     user: User
   }
+`;
 
+const userTypeDef = /* GraphQL */ `
   type User {
     id: Int
     name: String
@@ -13,7 +15,7 @@ const queries = /* GraphQL */ `
 `;
 
 export const schema = createSchema({
-  typeDefs: queries,
+  typeDefs: [queries, userTypeDef],
   resolvers: {
     Query: {
       hello: () => "Hello from yoga",
