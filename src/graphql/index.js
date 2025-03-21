@@ -30,3 +30,4 @@ export const schema = createSchema({
     },
   },
 });
+// spliting to different files
