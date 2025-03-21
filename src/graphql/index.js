@@ -1,17 +1,19 @@
 import { createSchema } from "graphql-yoga";
 
-export const schema = createSchema({
-  typeDefs: /* GraphQL */ `
-    type Query {
-      hello: String
-      user: User
-    }
+const queries = /* GraphQL */ `
+  type Query {
+    hello: String
+    user: User
+  }
 
-    type User {
-      id: Int
-      name: String
-    }
-  `,
+  type User {
+    id: Int
+    name: String
+  }
+`;
+
+export const schema = createSchema({
+  typeDefs: queries,
   resolvers: {
     Query: {
       hello: () => "Hello from yoga",
@@ -30,4 +32,3 @@ export const schema = createSchema({
     },
   },
 });
-// spliting to different files
