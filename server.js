@@ -2,7 +2,7 @@ import express from "express";
 import { createYoga } from "graphql-yoga";
 
 import { ruruHTML } from "ruru/server";
-import { schema } from "./src/graphql";
+import { schema } from "./src/graphql/index.js";
 
 const yoga = createYoga({
   schema,
