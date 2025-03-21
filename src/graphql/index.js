@@ -8,6 +8,10 @@ const queries = /* GraphQL */ `
 `;
 
 const userTypeDef = /* GraphQL */ `
+  type Query {
+    user: User
+  }
+
   type User {
     id: Int
     name: String
