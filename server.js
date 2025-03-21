@@ -1,20 +1,11 @@
 import express from "express";
-import { createSchema, createYoga } from "graphql-yoga";
+import { createYoga } from "graphql-yoga";
+
 import { ruruHTML } from "ruru/server";
+import { schema } from "./src/graphql";
 
 const yoga = createYoga({
-  schema: createSchema({
-    typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: () => "Hello from yoga",
-      },
-    },
-  }),
+  schema,
 });
 
 const app = express();
