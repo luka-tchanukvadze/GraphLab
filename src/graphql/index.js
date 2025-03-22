@@ -1,4 +1,5 @@
 import { createSchema } from "graphql-yoga";
+import { typeDef as User } from "./models/user.js";
 
 const queries = /* GraphQL */ `
   type Query {
@@ -6,19 +7,8 @@ const queries = /* GraphQL */ `
   }
 `;
 
-const userTypeDef = /* GraphQL */ `
-  type Query {
-    user: User
-  }
-
-  type User {
-    id: Int
-    name: String
-  }
-`;
-
 export const schema = createSchema({
-  typeDefs: [queries, userTypeDef],
+  typeDefs: [queries, User],
   resolvers: {
     Query: {
       hello: () => "Hello from yoga",
