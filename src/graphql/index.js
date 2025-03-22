@@ -7,23 +7,25 @@ const queries = /* GraphQL */ `
   }
 `;
 
-export const schema = createSchema({
-  typeDefs: [queries, User],
-  resolvers: {
-    Query: {
-      hello: () => "Hello from yoga",
-      user: () => {
-        return {
-          id: 1,
-          name: "Luka",
-        };
-      },
-    },
-
-    User: {
-      name: (obj) => {
-        return obj.name.toUpperCase();
-      },
+const resolvers = {
+  Query: {
+    hello: () => "Hello from yoga",
+    user: () => {
+      return {
+        id: 1,
+        name: "Luka",
+      };
     },
   },
+
+  User: {
+    name: (obj) => {
+      return obj.name.toUpperCase();
+    },
+  },
+};
+
+export const schema = createSchema({
+  typeDefs: [queries, User],
+  resolvers,
 });
