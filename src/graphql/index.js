@@ -7,9 +7,8 @@ const queries = /* GraphQL */ `
   }
 `;
 
-const resolvers = {
+const userResolvers = {
   Query: {
-    hello: () => "Hello from yoga",
     user: () => {
       return {
         id: 1,
@@ -22,6 +21,12 @@ const resolvers = {
     name: (obj) => {
       return obj.name.toUpperCase();
     },
+  },
+};
+
+const resolvers = {
+  Query: {
+    hello: () => "Hello from yoga",
   },
 };
 
