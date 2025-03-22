@@ -1,5 +1,5 @@
 import { createSchema } from "graphql-yoga";
-import { typeDef as User } from "./models/user.js";
+import { typeDef as User, resolvers as userResolvers } from "./models/user.js";
 import _ from "lodash";
 
 const queries = /* GraphQL */ `
@@ -7,23 +7,6 @@ const queries = /* GraphQL */ `
     hello: String
   }
 `;
-
-const userResolvers = {
-  Query: {
-    user: () => {
-      return {
-        id: 1,
-        name: "Luka",
-      };
-    },
-  },
-
-  User: {
-    name: (obj) => {
-      return obj.name.toUpperCase();
-    },
-  },
-};
 
 const resolvers = {
   Query: {

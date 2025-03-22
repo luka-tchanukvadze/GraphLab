@@ -8,3 +8,20 @@ export const typeDef = /* GraphQL */ `
     name: String
   }
 `;
+
+export const resolvers = {
+  Query: {
+    user: () => {
+      return {
+        id: 1,
+        name: "Luka",
+      };
+    },
+  },
+
+  User: {
+    name: (obj) => {
+      return obj.name.toUpperCase();
+    },
+  },
+};
