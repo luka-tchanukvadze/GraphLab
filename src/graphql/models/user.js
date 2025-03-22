@@ -14,7 +14,7 @@ export const resolvers = {
     user: () => {
       return {
         id: 1,
-        name: "Luka",
+        name: "Chanu",
       };
     },
   },
