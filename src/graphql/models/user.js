@@ -3,6 +3,10 @@ export const typeDef = /* GraphQL */ `
     user: User
   }
 
+  type Mutation {
+    createUser: User
+  }
+
   type User {
     id: Int
     name: String
@@ -16,6 +20,12 @@ export const resolvers = {
         id: 1,
         name: "Chanu",
       };
+    },
+  },
+
+  Mutation: {
+    createUser: (obj) => {
+      console.log("creating a user");
     },
   },
 
