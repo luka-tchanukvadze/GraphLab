@@ -9,6 +9,11 @@ dotenv.config();
 
 const yoga = createYoga({
   schema,
+  context: () => {
+    return {
+      hello: "world",
+    };
+  },
 });
 
 const app = express();
