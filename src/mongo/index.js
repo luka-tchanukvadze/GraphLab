@@ -23,5 +23,6 @@ export async function setupDatabase() {
     };
   } catch (err) {
     console.log("error connection to the database");
+    return {};
   }
 }

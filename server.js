@@ -4,12 +4,14 @@ import dotenv from "dotenv";
 
 import { ruruHTML } from "ruru/server";
 import { schema } from "./src/graphql/index.js";
+import { setupDatabase } from "./src/mongo/index.js";
 
 dotenv.config();
 
 const yoga = createYoga({
   schema,
-  context: () => {
+  context: async () => {
+    const client = await setupDatabase();
     return {
       hello: "world",
     };
