@@ -1,8 +1,11 @@
 import express from "express";
 import { createYoga } from "graphql-yoga";
+import dotenv from "dotenv";
 
 import { ruruHTML } from "ruru/server";
 import { schema } from "./src/graphql/index.js";
+
+dotenv.config();
 
 const yoga = createYoga({
   schema,
