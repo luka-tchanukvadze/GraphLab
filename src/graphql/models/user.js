@@ -4,7 +4,12 @@ export const typeDef = /* GraphQL */ `
   }
 
   type Mutation {
-    createUser(name: String!, age: Int!): User
+    createUser(user: NewUserInput!): User
+  }
+
+  input NewUserInput {
+    name: String!
+    age: Int!
   }
 
   type User {
