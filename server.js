@@ -11,9 +11,9 @@ dotenv.config();
 const yoga = createYoga({
   schema,
   context: async () => {
-    const client = await setupDatabase();
+    const mongo = await setupDatabase();
     return {
-      hello: "world",
+      mongo,
     };
   },
 });
