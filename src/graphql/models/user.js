@@ -4,12 +4,13 @@ export const typeDef = /* GraphQL */ `
   }
 
   type Mutation {
-    createUser(name: String!): User
+    createUser(name: String!, age: Int!): User
   }
 
   type User {
     id: Int
     name: String
+    age: Int
   }
 `;
 
@@ -24,14 +25,20 @@ export const resolvers = {
   },
 
   Mutation: {
-    createUser: (obj, args) => {
-      console.log("creating a user");
+    createUser: (_, { name, age }) => {
+      // insert into db
+
+      return {
+        id: 1,
+        name,
+        age,
+      };
     },
   },
 
   User: {
     name: (obj) => {
-      return obj.name.toUpperCase();
+      return obj.name.trim().toUpperCase();
     },
   },
 };
