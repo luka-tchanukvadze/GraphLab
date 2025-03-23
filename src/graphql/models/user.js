@@ -4,7 +4,7 @@ export const typeDef = /* GraphQL */ `
   }
 
   type Mutation {
-    createUser: User
+    createUser(name: String!): User
   }
 
   type User {
@@ -24,7 +24,7 @@ export const resolvers = {
   },
 
   Mutation: {
-    createUser: (obj) => {
+    createUser: (obj, args) => {
       console.log("creating a user");
     },
   },
