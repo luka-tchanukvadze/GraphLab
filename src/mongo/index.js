@@ -17,9 +17,13 @@ export async function setupDatabase() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const db = client.db("sample_mflix");
 
     return {
       client,
+      db,
+      users: db.collection("users"),
+      movies: db.collection("movies"),
     };
   } catch (err) {
     console.log("error connection to the database");
