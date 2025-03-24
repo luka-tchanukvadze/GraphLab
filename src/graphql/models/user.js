@@ -49,6 +49,9 @@ export const resolvers = {
   },
 
   User: {
+    id: (obj) => {
+      return obj._id;
+    },
     name: (obj) => {
       return obj.name.trim().toUpperCase();
     },
