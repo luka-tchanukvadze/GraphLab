@@ -24,7 +24,7 @@ export const typeDef = /* GraphQL */ `
 export const resolvers = {
   Query: {
     users: (obj, args, { mongo }) => {
-      return mongo.users.find().toArray();
+      return mongo.users.find().limit(20).toArray();
     },
 
     user: () => {
@@ -37,7 +37,6 @@ export const resolvers = {
 
   Mutation: {
     createUser: async (_, { user }, { mongo }) => {
-      const movies = await context.mongo.movies.find().toArray();
       console.log(movies);
       // insert into db
 
@@ -50,7 +49,7 @@ export const resolvers = {
 
   User: {
     id: (obj) => {
-      return obj._id;
+      return obj._id || obj.id;
     },
     name: (obj) => {
       return obj.name.trim().toUpperCase();
