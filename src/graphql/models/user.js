@@ -1,5 +1,7 @@
 export const typeDef = /* GraphQL */ `
   type Query {
+    users: [User]!
+
     user: User
   }
 
@@ -13,14 +15,18 @@ export const typeDef = /* GraphQL */ `
   }
 
   type User {
-    id: Int
+    id: ID!
     name: String
-    age: Int
+    email: String
   }
 `;
 
 export const resolvers = {
   Query: {
+    users: (obj, args, { mongo }) => {
+      return mongo.users.find().toArray();
+    },
+
     user: () => {
       return {
         id: 1,
