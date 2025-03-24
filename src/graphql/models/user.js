@@ -1,8 +1,10 @@
+import { ObjectId } from "mongodb";
+
 export const typeDef = /* GraphQL */ `
   type Query {
     users: [User]!
 
-    user: User
+    user(id: ID!): User
   }
 
   type Mutation {
@@ -27,11 +29,9 @@ export const resolvers = {
       return mongo.users.find().limit(20).toArray();
     },
 
-    user: () => {
-      return {
-        id: 1,
-        name: "Chanu",
-      };
+    user: async (obj, { id }, { mongo }) => {
+      const user = await mongo.users.findOne({ _id: new ObjectId(id) });
+      return user;
     },
   },
 
