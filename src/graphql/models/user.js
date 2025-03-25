@@ -10,11 +10,16 @@ export const typeDef = /* GraphQL */ `
   type Mutation {
     createUser(user: NewUserInput!): User
     deleteUser(id: ID!): Boolean
+    updateUser(id: ID!, update: UpdateUserInput): User
   }
 
   input NewUserInput {
     name: String!
     email: String!
+  }
+
+  input UpdateUserInput {
+    name: String!
   }
 
   type User {
@@ -51,6 +56,13 @@ export const resolvers = {
     deleteUser: async (obj, args, { mogno }) => {
       await mongo.users.deleteOne({ _id: new ObjectId(id) });
       return true;
+    },
+
+    updateUser: async (obj, { id, upadte }, { mongo }) => {
+      const response = await mongo.users.updateOne(
+        { _id: new ObjectId(id) },
+        update
+      );
     },
   },
 
