@@ -61,8 +61,10 @@ export const resolvers = {
     updateUser: async (obj, { id, upadte }, { mongo }) => {
       const response = await mongo.users.updateOne(
         { _id: new ObjectId(id) },
-        update
+        { $set: { name: update.name } }
       );
+
+      return mongo.users.findOne({ _id: new ObjectId(id) });
     },
   },
 
