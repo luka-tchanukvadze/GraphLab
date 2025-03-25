@@ -7,7 +7,6 @@ export const typeDef = /* GraphQL */ `
     _id: ID
     text: String
     email: String
-
     user: User
   }
 `;
