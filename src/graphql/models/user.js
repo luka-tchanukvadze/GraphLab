@@ -13,7 +13,7 @@ export const typeDef = /* GraphQL */ `
 
   input NewUserInput {
     name: String!
-    age: Int!
+    email: String!
   }
 
   type User {
@@ -37,11 +37,12 @@ export const resolvers = {
 
   Mutation: {
     createUser: async (_, { user }, { mongo }) => {
-      console.log(movies);
+      const response = await mongo.users.insertOne(user);
+
       // insert into db
 
       return {
-        id: 1,
+        id: response.insertedId,
         ...user,
       };
     },
